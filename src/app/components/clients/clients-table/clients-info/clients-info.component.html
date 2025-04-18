@@ -1,0 +1,9 @@
+<div class="clients-table-data-block">
+  <input type="checkbox" class="checkbox" [(ngModel)]="client.selected" />
+  <div class="clients-table-data-names" (click)="onEditClient(client)">
+    <a class="clients-table-data-name">{{ client.name }}</a>
+    <a class="clients-table-data-name">{{ client.surname }}</a>
+    <a class="clients-table-data-name version2">{{ client.email }}</a>
+    <a class="clients-table-data-name version2">{{ client.phone }}</a>
+  </div>
+</div>

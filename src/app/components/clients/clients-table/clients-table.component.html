@@ -1,0 +1,61 @@
+<div class="clients-table-container">
+  <div class="clients-buttons">
+    <button
+      mat-icon-button
+      class="icon-add__svg"
+      [disableRipple]="true"
+      (click)="onAddClient()"
+    ></button>
+    <button
+      mat-icon-button
+      class="icon-delete__svg"
+      (click)="onDeleteClient()"
+      [disabled]="!anySelected"
+      [disableRipple]="true"
+    ></button>
+  </div>
+  <div class="clients-table-data-block">
+    <input
+      #checkbox
+      type="checkbox"
+      class="checkbox"
+      (change)="onToggleAll()"
+      [checked]="allSelected"
+      [indeterminate]="!allSelected && anySelected"
+    />
+    <div class="clients-table-data-names">
+      <div class="clients-table-data-name">
+        <span (click)="onSort('name')">Имя</span>
+        <span *ngIf="currentSort.column === 'name'">
+          {{ currentSort.direction === "asc" ? "▲" : "▼" }}
+        </span>
+      </div>
+      <div class="clients-table-data-name">
+        <span (click)="onSort('surname')">Фамилия</span>
+        <span *ngIf="currentSort.column === 'surname'">
+          {{ currentSort.direction === "asc" ? "▲" : "▼" }}
+        </span>
+      </div>
+      <div class="clients-table-data-name version2">
+        <span (click)="onSort('email')">E-mail</span>
+        <span *ngIf="currentSort.column === 'email'">
+          {{ currentSort.direction === "asc" ? "▲" : "▼" }}
+        </span>
+      </div>
+      <div class="clients-table-data-name version2">
+        <span (click)="onSort('phone')">Телефон</span>
+        <span *ngIf="currentSort.column === 'phone'">
+          {{ currentSort.direction === "asc" ? "▲" : "▼" }}
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="clients-table-list">
+    <ng-container *ngFor="let client of clients">
+      <app-clients-info
+        (editClient)="onEditClient($event)"
+        [client]="client"
+      ></app-clients-info>
+    </ng-container>
+  </div>
+</div>

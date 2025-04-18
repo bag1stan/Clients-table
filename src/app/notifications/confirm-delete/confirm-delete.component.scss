@@ -1,0 +1,24 @@
+.confirm__container {
+  background-color: antiquewhite;
+  padding: 25px;
+}
+
+.confirm__dialog-container {
+  width: 448px;
+  min-height: 300px;
+  padding: 40px;
+  position: relative;
+}
+
+.dialog__buttons {
+  display: flex;
+  gap: 5px;
+  justify-content: end;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+button[mat-raised-button] {
+  background-color: #2f67d5;
+}

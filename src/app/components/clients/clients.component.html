@@ -1,0 +1,14 @@
+<div class="clients-container">
+  <h1>Клиенты</h1>
+  <app-clients-table
+    [clients]="clients$ | async"
+    [allSelected]="allSelected"
+    [anySelected]="anySelected"
+    [currentSort]="currentSort"
+    (toggleAll)="toggleAll()"
+    (deleteSelected)="onDeleteClient()"
+    (addClient)="onAddClient()"
+    (editClient)="onEditClient($event)"
+    (sort)="onSort($event)"
+  ></app-clients-table>
+</div>

@@ -1,0 +1,45 @@
+<mat-dialog-content class="confirm__dialog-container">
+  <h2 class="confirm__dialog-h2">Удаление строк</h2>
+
+  <h3 class="confirm__dialog-span">
+    Удалить выбранные строки ({{ data.selectedCounter }})?
+  </h3>
+  <div mat-dialog-actions class="dialog__buttons">
+    <button
+      type="button"
+      mat-button
+      mat-dialog-close
+      (click)="confirmDelete(false)"
+    >
+      Отмена
+    </button>
+    <button
+      cdkFocusInitial
+      mat-raised-button
+      type="submit"
+      (click)="confirmDelete(true)"
+    >
+      Удалить
+    </button>
+  </div>
+</mat-dialog-content>
+
+<!-- <mat-dialog-actions>
+  <button
+    type="button"
+    mat-stroked-button
+    mat-dialog-close
+    cdkFocusInitial
+    (click)="confirmDelete(true)"
+  >
+    Да
+  </button>
+  <button
+    type="button"
+    mat-button
+    mat-dialog-close
+    (click)="confirmDelete(false)"
+  >
+    Нет
+  </button>
+</mat-dialog-actions> -->

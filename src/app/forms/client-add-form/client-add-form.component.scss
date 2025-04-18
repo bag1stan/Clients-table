@@ -1,0 +1,40 @@
+.cards__item {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; // равномерное расстояние между элементами
+  padding: 24px;
+  background-color: #fff;
+  width: 309px;
+  box-shadow: 0px 20px 50px rgba(60, 60, 59, 0.07);
+}
+
+h1 {
+  font-weight: 500;
+  font-size: 24px;
+  color: #231f20;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.mat-dialog-content {
+  padding: 24px;
+}
+
+.mat-dialog-actions {
+  padding: 8px 24px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+button[mat-button] {
+  font-weight: 500;
+}
+
+.dialog__buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: end;
+}
