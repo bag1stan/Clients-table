@@ -1,0 +1,46 @@
+<div class="clients-table-container">
+  <div class="clients-buttons">
+    <button
+      mat-icon-button
+      class="icon-add__svg"
+      [disableRipple]="true"
+      (click)="onClientAdd()"
+    ></button>
+    <button
+      mat-icon-button
+      class="icon-delete__svg"
+      [disableRipple]="true"
+      [disabled]="!anySelected"
+      (click)="onClientDelete()"
+    ></button>
+  </div>
+  <div class="clients-table-data-block">
+    <input
+      type="checkbox"
+      class="checkbox"
+      (change)="onAllToggle()"
+      [checked]="allSelected"
+      [indeterminate]="!allSelected && anySelected"
+    />
+    <div class="clients-table-data-names">
+      @for (column of columns | keyvalue; track column) {
+        <div class="clients-table-data-name">
+          <span (click)="onSortClick(column.key)">
+            {{ column.value }}
+          </span>
+          <span *ngIf="sort.column === column.key">
+            {{ sort.direction === "asc" ? "▲" : "▼" }}
+          </span>
+        </div>
+      }
+    </div>
+  </div>
+  <div class="clients-table-list">
+    @for (client of clients; track client.id) {
+      <app-clients-info
+        [client]="client"
+        (clientEdit)="onClientEdit($event)"
+      ></app-clients-info>
+    }
+  </div>
+</div>

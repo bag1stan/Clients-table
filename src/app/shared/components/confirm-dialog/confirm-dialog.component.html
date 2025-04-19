@@ -1,0 +1,21 @@
+<mat-dialog-content class="confirm-dialog">
+  <h2 class="confirm-dialog__title">{{ title }}</h2>
+
+  <div class="confirm-dialog__content" [innerHTML]="content | safeHtml"></div>
+
+  <mat-dialog-actions class="confirm-dialog__actions">
+    <button
+      type="button"
+      mat-button
+      mat-dialog-close
+    >Отмена
+    </button>
+    <button
+      type="button"
+      cdkFocusInitial
+      mat-raised-button
+      [mat-dialog-close]="true"
+    >{{ submitButtonText }}
+    </button>
+  </mat-dialog-actions>
+</mat-dialog-content>

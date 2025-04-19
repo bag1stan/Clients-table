@@ -29,6 +29,7 @@ html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -38,6 +39,9 @@ body {
   display: none !important;
 }
 
+// todo или перенести в mat-form-field.scss где будут переопределяться стили
+// todo либо перенести для каждого диалога как я сделал с confirm-dialog
+//  (я удалил эти стили отсюда и перенёс в confirm-dialog.scss)
 .dialog__content {
   width: 448px !important;
   padding: 44px 40px !important;
@@ -48,6 +52,7 @@ button[mat-raised-button] {
   background: #2f67d5 !important;
   color: #fff !important;
   box-shadow: 0 1px 1px 1px rgba(32, 43, 54, 0.4) !important;
+
   &:hover {
     outline: none !important;
     box-shadow: 0 1px 3px 2px rgba(32, 43, 54, 0.4) !important;
@@ -55,36 +60,21 @@ button[mat-raised-button] {
     scale: 1.02;
     background: #3c7cf8 !important;
   }
+
   &:active {
     background: #194eb6 !important;
     box-shadow: 0 1px 1px 1px rgba(32, 43, 54, 0.4) !important;
     transition: box-shadow 0.3s !important;
     scale: 1;
   }
+
   &:focus {
     box-shadow: 0 1px 3px 2px rgba(32, 43, 54, 0.4) !important;
   }
 }
 
-.confirm__dialog-h2 {
-  padding: 0 !important;
-  color: #231f20 !important;
-  font-weight: 500;
-  font-size: 24px;
-}
-
-.confirm__dialog-span {
-  margin-top: 36px !important;
-  padding: 0 !important;
-  font-weight: 400;
-  font-size: 18px;
-  color: #263238;
-}
-
-.mat-mdc-dialog-actions {
-  padding: 0 40px 40px 0 !important;
-}
-
-.mat-icon-button:hover:not(:disabled) {
-  background-color: #1976d2 !important; /* Задаем синий цвет, можно заменить на нужный HEX */
+.mat-icon-button {
+  &:hover:not(:disabled) {
+    background-color: #1976d2 !important;
+  }
 }

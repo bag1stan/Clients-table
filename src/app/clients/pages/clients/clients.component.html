@@ -1,0 +1,19 @@
+@let isAllSelected = (isAllSelected$ | async)!;
+@let isAnySelected = (isAnySelected$ | async)!;
+
+<div class="clients-container">
+  <h1>Клиенты</h1>
+  <app-clients-table
+    [clients]="(clients$ | async)!"
+    [allSelected]="isAllSelected"
+    [anySelected]="isAnySelected"
+    [sort]="currentSort"
+    (allToggle)="toggleAll(isAllSelected)"
+    (clientDelete)="onClientDelete()"
+  ></app-clients-table>
+</div>
+
+<!--todo:-->
+<!--(clientAdd)="onAddClient()"-->
+<!--(clientEdit)="onEditClient($event)"-->
+<!--(sort)="onSort($event)"-->
