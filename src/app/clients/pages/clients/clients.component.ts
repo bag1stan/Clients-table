@@ -3,7 +3,7 @@ import {ClientsFacade} from '../../clients.facade';
 import {AsyncPipe} from '@angular/common';
 import {ClientsTableComponent} from '../../components/clients-table/clients-table.component';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-import {filter, first, switchMap, tap} from 'rxjs';
+import {filter, tap} from 'rxjs';
 import {TableColumnSort} from '../../components/clients-table/table-column-sort.interface';
 
 @Component({
@@ -27,6 +27,20 @@ export class ClientsComponent {
 
   constructor() {
     this.clientsFacade.getClients().pipe(takeUntilDestroyed()).subscribe();
+  }
+
+  public toggleAll(isAllSelected: boolean): void {
+    this.clientsFacade.toggleAll(!isAllSelected);
+  }
+
+  public onClientDelete(): void {
+    this.clientsFacade.openClientDeleteConfirmDialog(this.injector)
+      .pipe(
+        filter(Boolean),
+        tap(() => this.clientsFacade.deleteClients()),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe()
   }
 
   // todo
@@ -53,24 +67,6 @@ export class ClientsComponent {
   //     })
   //   );
   // }
-
-  public toggleAll(isAllSelected: boolean): void {
-    this.clientsFacade.toggleAll(!isAllSelected);
-  }
-
-  public onClientDelete(): void {
-    this.clientsFacade.selectedClients$
-      .pipe(
-        first(),
-        switchMap((clients) =>
-          this.clientsFacade.openClientDeleteConfirmDialog(clients, this.injector)
-        ),
-        filter(Boolean),
-        tap(() => this.clientsFacade.deleteClients()),
-        takeUntilDestroyed(this.destroyRef)
-      )
-      .subscribe()
-  }
 
   // todo
   // public onAddClient(): void {

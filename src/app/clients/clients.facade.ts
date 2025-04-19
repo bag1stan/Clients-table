@@ -14,10 +14,9 @@ export class ClientsFacade {
 
   readonly isAllSelected$ = this.clientsState.isAllSelected$;
   readonly isAnySelected$ = this.clientsState.isAnySelected$;
-  readonly selectedClients$ = this.clientsState.selectedClients$;
 
-  openClientDeleteConfirmDialog(clients: Client[], injector = this.injector): Observable<boolean | undefined> {
-    return this.clientsService.openClientDeleteConfirmDialog(clients, injector).afterClosed();
+  openClientDeleteConfirmDialog(injector = this.injector): Observable<boolean | undefined> {
+    return this.clientsService.openClientDeleteConfirmDialog(this.clientsState.clients, injector).afterClosed();
   }
 
   getClients(): Observable<Client[]> {

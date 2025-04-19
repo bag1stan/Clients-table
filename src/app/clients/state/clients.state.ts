@@ -28,8 +28,4 @@ export class ClientsState {
   readonly isAnySelected$ = this.clients$$.pipe(
     map((clients) => clients.some(({selected}) => selected))
   )
-
-  readonly selectedClients$ = this.clients$$.pipe(
-    map((clients) => clients.filter(({selected}) => selected))
-  )
 }
