@@ -26,14 +26,14 @@ export class ClientsComponent {
   readonly currentSort: TableColumnSort = {column: '', direction: 'asc'};
 
   constructor() {
-    this.clientsFacade.getClients().pipe(takeUntilDestroyed()).subscribe();
+    this.initClients();
   }
 
-  public toggleAll(isAllSelected: boolean): void {
+  onAllToggle(isAllSelected: boolean): void {
     this.clientsFacade.toggleAll(!isAllSelected);
   }
 
-  public onClientDelete(): void {
+  onClientDelete(): void {
     this.clientsFacade.openClientDeleteConfirmDialog(this.injector)
       .pipe(
         filter(Boolean),
@@ -43,8 +43,12 @@ export class ClientsComponent {
       .subscribe()
   }
 
+  private initClients(): void {
+    this.clientsFacade.getClients().pipe(takeUntilDestroyed()).subscribe();
+  }
+
   // todo
-  // public onSort(column: string): void {
+  // onSort(column: string): void {
   //   const direction =
   //     this.currentSort.column === column && this.currentSort.direction === 'asc'
   //       ? 'desc'
@@ -69,7 +73,7 @@ export class ClientsComponent {
   // }
 
   // todo
-  // public onAddClient(): void {
+  // onAddClient(): void {
   //   this.dialog
   //     .open(ClientAddFormComponent, {data: {client: null}})
   //     .afterClosed()
@@ -82,7 +86,7 @@ export class ClientsComponent {
   //     });
   // }
   // todo
-  // public onEditClient(client: Client): void {
+  // onEditClient(client: Client): void {
   //   this.dialog
   //     .open(ClientEditFormComponent, {
   //       data: {client: client},

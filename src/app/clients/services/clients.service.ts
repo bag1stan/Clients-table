@@ -1,21 +1,18 @@
-import {inject, Injectable, Injector, runInInjectionContext} from '@angular/core';
+import {inject, Injectable, Injector} from '@angular/core';
 import {map, Observable, of} from 'rxjs';
 import {Client} from '../interfaces/client.interface';
 import {LocalStorageService} from '../../shared/utils/local-storage.service';
 import {StorageKey} from '../../shared/enums/storage-key.enum';
 import {ClientsApiService} from './clients-api.service';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {MatDialogRef} from '@angular/material/dialog';
 import {ConfirmDialogComponent} from '../../shared/components/confirm-dialog/confirm-dialog.component';
 import {ConfirmDialogData} from '../../shared/components/confirm-dialog/confirm-dialog-data.interface';
+import {injectMatDialog} from '../../shared/utils/inject-mat-dialog.util';
 
 @Injectable({providedIn: 'root'})
 export class ClientsService {
   private readonly localStorageService = inject(LocalStorageService);
   private readonly clientsApiService = inject(ClientsApiService);
-
-  private getMatDialog(injector: Injector): MatDialog {
-    return runInInjectionContext(injector, () => inject(MatDialog))
-  }
 
   get(): Observable<Client[]> {
     const clientsFromStorage = this.localStorageService.get<Client[]>(StorageKey.Clients);
@@ -32,7 +29,7 @@ export class ClientsService {
   }
 
   openClientDeleteConfirmDialog(clients: Client[], injector: Injector): MatDialogRef<unknown, boolean> {
-    return this.getMatDialog(injector)
+    return injectMatDialog(injector)
       .open<ConfirmDialogComponent, ConfirmDialogData, boolean>(ConfirmDialogComponent, {
         data: {
           title: 'Удаление строк',
